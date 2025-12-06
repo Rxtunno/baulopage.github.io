@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Baulo</title>
+    <style>
+        .belt-container {
+    width: 100%;
+    height: 150px;
+    margin-top: 80px;
+    overflow: hidden;
+    border: 3px solid #00ff88;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ff88;
+    display: flex;
+    align-items: center;
+    background: #0d0d0d;
+}
+
+.belt {
+    display: flex;
+    gap: 40px;
+    animation: moveBelt 12s linear infinite;
+}
+
+.belt img {
+    height: 90px;
+    transition: transform 0.3s ease;
+}
+
+.belt img:hover {
+    transform: scale(1.2);
+}
+
+/* Animación infinita */
+@keyframes moveBelt {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+        body {
+            background: #0d0d0d;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0 420px 0 420px; 
+            display: block;
+        }
+
+        /* Contenedor general */
+        .container {
+            margin: 40px auto;
+        }
+
+        /* TARJETA */
+        .card {
+            width: 400px;
+            background: #181818;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #00ff88;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* FOTO */
+        .profile {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #00ff88;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: transform .3s ease;
+        }
+
+        .profile:hover {
+            transform: scale(1.1);
+        }
+
+        /* EMOTES */
+        .emotes img {
+            width: 60px;
+            margin: 8px;
+            transition: transform .3s ease;
+        }
+
+        .emotes img:hover {
+            transform: scale(1.15);
+        }
+
+        /* BOTÓN */
+        button {
+            background: #00ff88;
+            border: none;
+            padding: 12px 22px;
+            color: black;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ffaa;
+            transform: scale(1.05);
+        }
+
+        /* ANIMACION */
+        #dato {
+            margin-top: 25px;
+            font-size: 22px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CHAT IZQUIERDA */
+        .chat-box {
+            position: fixed;
+            left: 20px;
+            top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #00ff88;
+        }
+
+        /* PANEL DERECHA */
+        .redes-box {
+            position: fixed;
+            right: 20px;
+            top: 40px;
+            width: 260px;
+            background: #181818;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ff88;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .redes-box h2 {
+            margin-bottom: 15px;
+            color: #00ff88;
+        }
+
+        .social-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f0f0f;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+            border: 1px solid #00ff8844;
+        }
+
+        .social-list a:hover {
+            transform: scale(1.05);
+            background: #00ff8833;
+        }
+
+        .social-list img {
+            width: 32px;
+            height: 32px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- CHAT A LA IZQUIERDA -->
+    <div class="chat-box">
+        <iframe 
+            src="https://kick.com/baulo/chat?embed=true"
+            height="800"
+            width="350"
+            style="border: none; border-radius: 12px;">
+        </iframe>
+    </div>
+
+    <!-- PANEL CON REDES A LA DERECHA -->
+    <div class="redes-box">
+        <h2>Redes de Baulo</h2>
+
+        <div class="social-list">
+            <a href="https://kick.com/baulo" target="_blank">
+                <img src="https://kick.com/img/kick-logo.svg">
+                Kick
+            </a>
+            <a href="https://www.instagram.com/bautiagnone" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+                Instagram
+            </a>
+            <a href="https://www.youtube.com/@bautiagnone" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174883.png">
+                YouTube
+            </a>
+            <a href="https://x.com/bautiagnone" target="_blank">
+                <img src="data:image/jpeg;base64,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">
+                Twitter / X
+            </a>
+            <a href="https://twitch.tv/baulo" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111668.png">
+                Twitch
+            </a>
+        </div>
+    </div>
+
+    <!-- TARJETA DE BAULO -->
+    <div align="center" class="container">
+        <div class="card">
+
+            <img class="profile" 
+                src="https://files.kick.com/images/user/2037958/profile_image/conversion/4e8c37ca-6ff3-4950-a286-047bb8e38ba0-fullsize.webp" 
+                alt="Baulo">
+
+            <h1>baulo</h1>
+
+            <a href="https://kick.com/baulo" target="_blank" style="color:#00ff88; text-decoration:none; font-size:20px;">
+                Ver en Kick
+            </a>
+
+            <div class="emotes">
+                <img src="https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.avif" alt="Clueless">
+                <img src="https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.avif" alt="LOL">
+            </div>
+
+            <button onclick="mostrarDato()">Generar dato random</button>
+
+            <p id="dato"></p>
+        </div>
+    </div>
+
+<script>
+    const datos = [
+        "Baulo es el mejor streamer del mundo.",
+        "Baulo estuvo 8hs en directo sin parar.",
+        "Baulo una vez hizo reír a todo el chat con un solo Clueless.",
+        "Bauti Agnonme apareció solo 1 vez en stream.",
+        "Baulo casi explota de risa viendo el LOL.",
+        "El chat de Baulo es el más tóxico pero también el más divertido.",
+        "Si donás, Baulo te manda un Clueless especial."
+    ];
+
+    function mostrarDato() {
+        const randomIndex = Math.floor(Math.random() * datos.length);
+        const elemento = document.getElementById("dato");
+
+        elemento.style.opacity = 0;
+        elemento.style.transform = "translateY(10px)";
+
+        setTimeout(() => {
+            elemento.innerText = datos[randomIndex];
+            elemento.style.opacity = 1;
+            elemento.style.transform = "translateY(0)";
+        }, 200);
+    }
+</script>
+<!-- CINTA DE EMOTES -->
+<div class="belt-container">
+    <div class="belt">
+        <img src="https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.avif">
+        <img src="https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F63B8GJR000AE7CZT484KXF9/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/4x.avif">
+
+        <!-- Se duplican para que la cinta sea continua -->
+          <img src="https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.avif">
+        <img src="https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F63B8GJR000AE7CZT484KXF9/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/4x.avif">
+
+         <img src="https://cdn.7tv.app/emote/01FS5ZCFG0000500DPPCXJWCP8/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F6NE9AER000CKKT9BSDYGT0J/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01GX6M9TRR000DJJ63WGMEA4Z8/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01GWBD2YR00002CCPRV6KPX758/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01G7YR9X5G0003Z50SB3FM5WR4/4x.avif">
+
+        <!-- Se duplican para que la cinta sea continua -->
+  
+         <img src="https://cdn.7tv.app/emote/01FS5ZCFG0000500DPPCXJWCP8/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01F6NE9AER000CKKT9BSDYGT0J/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01GX6M9TRR000DJJ63WGMEA4Z8/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01GWBD2YR00002CCPRV6KPX758/4x.avif">
+        <img src="https://cdn.7tv.app/emote/01G7YR9X5G0003Z50SB3FM5WR4/4x.avif">
+</div>
+
+</body>
+</html>
