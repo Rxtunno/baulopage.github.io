@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <title>Baulo</title>
     <style>
+        .easter-egg {
+    position: absolute;
+    width: 40px;   /* mismo tamaño que la foto */
+    height: 40px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;       /* cursor distinto */
+    opacity: 0;            /* invisible */
+}
+
         /* Reproductor YouTube mini abajo a la derecha */
 .yt-player {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    width: 300px;      /* tamaño del reproductor */
+    width: 500px;      /* tamaño del reproductor */
     height: 125px;
     border-radius: 12px;
     overflow: hidden;
@@ -255,6 +266,7 @@
     <!-- TARJETA DE BAULO -->
     <div align="center" class="container">
         <div class="card">
+<div class="easter-egg" onclick="location.href='https://www.famousbirthdays.com/headshots/bauti-agnone-2.jpg'"></div>
 
             <img class="profile" 
                 src="https://files.kick.com/images/user/2037958/profile_image/conversion/4e8c37ca-6ff3-4950-a286-047bb8e38ba0-fullsize.webp" 
