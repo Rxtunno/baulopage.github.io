@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baulo</title>
     <style>
+        /* BOTÓN DEL DINO */
+.dino-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 12px 20px;
+    background: #00ff88;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: black;
+    transition: 0.3s;
+    z-index: 9999;
+}
+.dino-btn:hover {
+    background: #00ffaa;
+    transform: scale(1.07);
+}
+
+/* MODAL */
+.dino-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+/* CONTENIDO DE LA VENTANA */
+.dino-content {
+    background: #181818;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ff88;
+    position: relative;
+}
+
+/* BOTÓN DE CERRAR */
+.dino-content .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #00ff88;
+}
+
                /* FONDO CON IMAGEN Y OPACIDAD BAJA */
 body::before {
     content: "";
@@ -383,6 +436,8 @@ body::before {
             <p id="dato"></p>
         </div>
     </div>
+    <button class="dino-btn" onclick="openDino()">▶ Jugar Dino</button>
+
 
 <script>
     const datos = [
@@ -473,10 +528,104 @@ body::before {
         allow="autoplay; encrypted-media">
     </iframe>
 </div>
+<div id="dinoModal" class="dino-modal">
+    <div class="dino-content">
+        <span class="close" onclick="closeDino()">✖</span>
+        <canvas id="dinoCanvas" width="600" height="150"></canvas>
+    </div>
+</div>
 
+<script>
+function openDino() {
+    document.getElementById("dinoModal").style.display = "flex";
+    startDinoGame();
+}
+
+function closeDino() {
+    document.getElementById("dinoModal").style.display = "none";
+}
+
+/* --- JUEGO DEL DINOSAURIO --- */
+function startDinoGame() {
+    const canvas = document.getElementById("dinoCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let dino = { x: 50, y: 100, width: 40, height: 40, dy: 0, jump: false };
+    let gravity = 1.1;
+    let obstacles = [];
+    let frame = 0;
+
+    document.addEventListener("keydown", () => {
+        if (!dino.jump) {
+            dino.dy = -16;
+            dino.jump = true;
+        }
+    });
+
+    function addObstacle() {
+        obstacles.push({ x: canvas.width, width: 20, height: 40 });
+    }
+
+    function drawDino() {
+        ctx.fillStyle = "#00ff88";
+        ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+    }
+
+    function drawObstacles() {
+        ctx.fillStyle = "#ffffff";
+        obstacles.forEach(ob => {
+            ctx.fillRect(ob.x, canvas.height - ob.height, ob.width, ob.height);
+            ob.x -= 6;
+        });
+    }
+
+    function detectCollision() {
+        for (let ob of obstacles) {
+            if (
+                dino.x < ob.x + ob.width &&
+                dino.x + dino.width > ob.x &&
+                dino.y + dino.height > canvas.height - ob.height
+            ) {
+                alert("Perdiste 💀 (cerrá la ventana y abrila de nuevo)");
+                obstacles = [];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Movimiento del dino
+        dino.dy += gravity;
+        dino.y += dino.dy;
+
+        if (dino.y >= 100) {
+            dino.y = 100;
+            dino.dy = 0;
+            dino.jump = false;
+        }
+
+        // Crear obstáculos
+        if (frame % 90 === 0) addObstacle();
+
+        drawDino();
+        drawObstacles();
+
+        if (!detectCollision()) {
+            frame++;
+            requestAnimationFrame(update);
+        }
+    }
+
+    update();
+}
+</script>
 
 </body>
 </html>
+
 
 
 
